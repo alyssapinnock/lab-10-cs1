@@ -1,36 +1,55 @@
+/*
+
+Instructions: 
+In this lab, you are going to implement a trie data structure to 
+count the number of occurrences of a word if it exists in the dictionary. 
+Words will always be in lowercase. Please modify the following code template:
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 // Trie structure
-struct Trie
-{	
+struct Trie{
+	int word;
+	struct Trie* next[26];
+
 };
 
+
 // Inserts the word to the trie structure
-void insert(struct Trie *pTrie, char *word)
-{
+void insert(struct Trie *pTrie, char *word){
+
 }
 
 // computes the number of occurances of the word
-int numberOfOccurances(struct Trie *pTrie, char *word)
-{
+int numberOfOccurances(struct Trie *pTrie, char *word){
+
 }
 
 // deallocate the trie structure
-struct Trie *deallocateTrie(struct Trie *pTrie)
-{
+struct Trie *deallocateTrie(struct Trie *pTrie){
+	int i;
+	for(i = 0; i < 26; i++){
+		if (pTrie->next != NULL){
+			deallocateTrie(pTrie->next[i]);
+		}
+	}
+	free(pTrie);
 }
 
 // Initializes a trie structure
-struct Trie *createTrie()
-{
+struct Trie *createTrie(){
+	
 }
 
 // this function will return number of words in the dictionary,
 // and read all the words in the dictionary to the structure words
 int readDictionary(char *filename, char **pInWords)
 {
+
 }
 
 int main(void)
