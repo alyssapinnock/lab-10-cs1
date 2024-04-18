@@ -49,6 +49,30 @@ struct Trie *createTrie(){
 // and read all the words in the dictionary to the structure words
 int readDictionary(char *filename, char **pInWords)
 {
+	char testing[20];
+	//FILE *file = fopen(("%s", filename), "r");
+	FILE *file = fopen(filename, "r");
+
+	if (file == NULL){
+        printf("\nCANNOT OPEN FILE \n");
+    }
+
+	// These are all to check that the file is working properly
+	
+	printf("\nthe file %s has been printed.\n", filename);
+	int n; 
+	fscanf(file, "%d", &n); // Number of words in the dictionary
+
+	printf("\n number of words in dictionary is %d", &n);
+
+	for (int i = 0; i < n; i++){
+		fscanf(file, "%s", pInWords[i]);
+	}
+	
+	fclose(file);
+	return n;
+
+	//need to return a value that counts the words in the list
 
 }
 
@@ -58,6 +82,7 @@ int main(void)
 	
 	//read the number of the words in the dictionary
 	int numWords = readDictionary("dictionary.txt", inWords);
+	printf("%d", &numWords);
 	for (int i=0;i<numWords;++i)
 	{
 		printf("%s\n",inWords[i]);
