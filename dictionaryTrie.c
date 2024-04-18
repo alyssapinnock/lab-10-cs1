@@ -41,7 +41,14 @@ struct Trie *deallocateTrie(struct Trie *pTrie){
 
 // Initializes a trie structure
 struct Trie *createTrie(){
-	
+	struct Trie *dictionary = malloc(sizeof(struct Trie));
+	dictionary->count = 0;
+
+	for (int i = 0; i < 26; i++){
+		dictionary->next[i] = NULL; // Set to NULL so that the spaces are empty
+	}
+
+	return dictionary;
 }
 
 // this function will return number of words in the dictionary,
