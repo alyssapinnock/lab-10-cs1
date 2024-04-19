@@ -43,17 +43,34 @@ void insert(struct Trie *pTrie, char *word){
 		}
 		else{ 
 			i++;
-			//pTrie = pTrie->next;
+			pTrie = pTrie->next[index];
 			continue;
 		}
 	}
-	pTrie->count = 1;
+	if (pTrie->count > 0) {
+        pTrie->count++;
+    } 
+	else {
+        pTrie->count = 1;
+    }
 	return;
 }
 
 // computes the number of occurances of the word
 int numberOfOccurances(struct Trie *pTrie, char *word){
-	// return currency;
+	int length = strlen(word);
+	int i = 0;
+
+	while (i != length){
+		int index = word[i] - 'a';
+
+		if(pTrie->next[index] == NULL){
+			return 0;
+		}
+		pTrie = pTrie->next[index];
+		i++;
+	}
+	return pTrie->count;
 
 }
 
