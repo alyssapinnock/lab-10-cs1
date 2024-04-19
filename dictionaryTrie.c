@@ -17,14 +17,43 @@ struct Trie{
 	struct Trie* next[26]; // children in the tree
 };
 
+struct Trie *createTrie(){
+	struct Trie *dictionary = malloc(sizeof(struct Trie));
+	dictionary->count = 0;
+
+	for (int i = 0; i < 26; i++){
+		dictionary->next[i] = NULL; // Set to NULL so that the spaces are empty
+	}
+
+	return dictionary;
+}
+
 
 // Inserts the word to the trie structure
-void insert(struct Trie *pTrie, char *word){
+void insert(struct Trie *pTrie, char *word){ 
 
+	int length = strlen(word);
+	int i = 0;
+
+
+	while(i != length){
+		int index = word[i] - 'a'; // We need the index of the word
+		if (pTrie->next[index] == NULL){ // If there is nothing placed in that index of the pTrie
+			pTrie->next[index] = createTrie(); // Insert that character of the word
+		}
+		else{ 
+			i++;
+			//pTrie = pTrie->next;
+			continue;
+		}
+	}
+	pTrie->count = 1;
+	return;
 }
 
 // computes the number of occurances of the word
 int numberOfOccurances(struct Trie *pTrie, char *word){
+	// return currency;
 
 }
 
@@ -40,16 +69,6 @@ struct Trie *deallocateTrie(struct Trie *pTrie){
 }
 
 // Initializes a trie structure
-struct Trie *createTrie(){
-	struct Trie *dictionary = malloc(sizeof(struct Trie));
-	dictionary->count = 0;
-
-	for (int i = 0; i < 26; i++){
-		dictionary->next[i] = NULL; // Set to NULL so that the spaces are empty
-	}
-
-	return dictionary;
-}
 
 // this function will return number of words in the dictionary,
 // and read all the words in the dictionary to the structure words
